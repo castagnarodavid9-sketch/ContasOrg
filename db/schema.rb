@@ -30,8 +30,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_16_161757) do
     t.boolean "fixo", default: false
     t.string "nome_debito", null: false
     t.datetime "updated_at", null: false
+    t.integer "userconf_id", null: false
     t.decimal "valor_debito", null: false
     t.index ["contrato_id"], name: "index_debitos_on_contrato_id"
+    t.index ["userconf_id"], name: "index_debitos_on_userconf_id"
   end
 
   create_table "userconfs", force: :cascade do |t|
@@ -58,5 +60,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_16_161757) do
 
   add_foreign_key "contratos", "userconfs"
   add_foreign_key "debitos", "contratos"
+  add_foreign_key "debitos", "userconfs"
   add_foreign_key "userconfs", "users"
 end

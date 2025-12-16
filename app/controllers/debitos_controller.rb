@@ -23,6 +23,7 @@ class DebitosController < ApplicationController
   # POST /debitos or /debitos.json
   def create
     @debito = Debito.new(debito_params)
+    @debito.userconf_id = current_user.userconf.id
 
     respond_to do |format|
       if @debito.save
