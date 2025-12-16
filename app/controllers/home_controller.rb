@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @debitos = Debito.where(userconf_id: current_user.userconf.id)
     @contrato_salario = Contrato.find_by(userconf_id: current_user.userconf.id)
 
-    # CÁLCULOS PARA VIEW
+    # CÁLCULOS PARA VIEW ####################################
     @total_dividas = 0
     @debitos.each do |dd|
       @total_dividas += dd.valor_debito
