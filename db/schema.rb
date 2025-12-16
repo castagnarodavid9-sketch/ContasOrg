@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_16_142636) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_16_161757) do
   create_table "contratos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "horas_semanais", null: false
@@ -20,6 +20,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_16_142636) do
     t.datetime "updated_at", null: false
     t.integer "userconf_id", null: false
     t.index ["userconf_id"], name: "index_contratos_on_userconf_id"
+  end
+
+  create_table "debitos", force: :cascade do |t|
+    t.integer "contrato_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "data_vencimento"
+    t.text "descricao"
+    t.boolean "fixo", default: false
+    t.string "nome_debito", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "valor_debito", null: false
+    t.index ["contrato_id"], name: "index_debitos_on_contrato_id"
   end
 
   create_table "userconfs", force: :cascade do |t|
@@ -45,5 +57,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_16_142636) do
   end
 
   add_foreign_key "contratos", "userconfs"
+  add_foreign_key "debitos", "contratos"
   add_foreign_key "userconfs", "users"
 end

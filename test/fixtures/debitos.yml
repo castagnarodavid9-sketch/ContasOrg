@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_debito: MyString
+  valor_debito: 9.99
+  descricao: MyText
+  fixo: false
+  data_vencimento: 2025-12-16 13:17:57
+  contrato_id: one
+
+two:
+  nome_debito: MyString
+  valor_debito: 9.99
+  descricao: MyText
+  fixo: false
+  data_vencimento: 2025-12-16 13:17:57
+  contrato_id: two

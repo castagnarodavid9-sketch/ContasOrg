@@ -1,0 +1,49 @@
+<%= form_with(model: debito) do |form| %>
+  <% if debito.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(debito.errors.count, "error") %> prohibited this debito from being saved:</h2>
+
+      <ul>
+        <% debito.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome_debito, style: "display: block" %>
+    <%= form.text_field :nome_debito %>
+  </div>
+
+  <div>
+    <%= form.label :valor_debito, style: "display: block" %>
+    <%= form.text_field :valor_debito %>
+  </div>
+
+  <div>
+    <%= form.label :descricao, style: "display: block" %>
+    <%= form.textarea :descricao %>
+  </div>
+
+  <div>
+    <%= form.label :fixo, style: "display: block" %>
+    <%= form.checkbox :fixo %>
+  </div>
+
+  <div>
+    <%= form.label :data_vencimento, style: "display: block" %>
+    <%= form.date_field :data_vencimento %>
+  </div>
+
+  <div>
+    <%= form.label "Contrato", style: "display: block" %>
+    <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

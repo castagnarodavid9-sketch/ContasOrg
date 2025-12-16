@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Debitos" %>
+
+<h1>Debitos</h1>
+
+<div id="debitos">
+  <% @debitos.each do |debito| %>
+    <%= render debito %>
+    <p>
+      <%= link_to "Show this debito", debito %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New debito", new_debito_path %>
