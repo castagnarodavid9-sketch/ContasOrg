@@ -8,6 +8,14 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <%= f.fields_for :userconf do |userconfs_fields|%>
+    <%= userconfs_fields.label "Nome de usuário:" %><br>
+    <%= userconfs_fields.text_field :nome %><br>
+
+    <%= userconfs_fields.label "Telefone de contato" %><br>
+    <%= userconfs_fields.text_field :telefone %><br>
+  <% end %>
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>

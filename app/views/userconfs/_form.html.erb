@@ -1,0 +1,17 @@
+<%= form_with(model: userconf) do |form| %>
+  <% if userconf.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(userconf.errors.count, "error") %> prohibited this userconf from being saved:</h2>
+
+      <ul>
+        <% userconf.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

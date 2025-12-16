@@ -1,0 +1,12 @@
+<% content_for :title, "Editing userconf" %>
+
+<h1>Editing userconf</h1>
+
+<%= render "form", userconf: @userconf %>
+
+<br>
+
+<div>
+  <%= link_to "Show this userconf", @userconf %> |
+  <%= link_to "Back to userconfs", userconfs_path %>
+</div>
