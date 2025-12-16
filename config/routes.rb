@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contratos
   # ROTAS PRINCIPAIS
   root to: "home#index"
   

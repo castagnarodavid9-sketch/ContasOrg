@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_16_135222) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_16_142636) do
+  create_table "contratos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "horas_semanais", null: false
+    t.string "nome_empresa", null: false
+    t.decimal "salario_bruto", null: false
+    t.decimal "salario_liquido", null: false
+    t.datetime "updated_at", null: false
+    t.integer "userconf_id", null: false
+    t.index ["userconf_id"], name: "index_contratos_on_userconf_id"
+  end
+
   create_table "userconfs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", null: false
@@ -33,5 +44,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_16_135222) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "contratos", "userconfs"
   add_foreign_key "userconfs", "users"
 end
