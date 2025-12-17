@@ -67,6 +67,6 @@ class DebitosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def debito_params
-      params.expect(debito: [ :nome_debito, :valor_debito, :descricao, :fixo, :data_vencimento, :contrato_id ])
+      params.expect(debito: [ :nome_debito, :valor_debito, :descricao, :data_vencimento, :contrato_id ])
     end
 end

@@ -17,7 +17,7 @@ class DebitosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create debito" do
     assert_difference("Debito.count") do
-      post debitos_url, params: { debito: { contrato_id_id: @debito.contrato_id_id, data_vencimento: @debito.data_vencimento, descricao: @debito.descricao, fixo: @debito.fixo, nome_debito: @debito.nome_debito, valor_debito: @debito.valor_debito } }
+      post debitos_url, params: { debito: { contrato_id_id: @debito.contrato_id_id, data_vencimento: @debito.data_vencimento, descricao: @debito.descricao, nome_debito: @debito.nome_debito, valor_debito: @debito.valor_debito } }
     end
 
     assert_redirected_to debito_url(Debito.last)
@@ -34,7 +34,7 @@ class DebitosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update debito" do
-    patch debito_url(@debito), params: { debito: { contrato_id_id: @debito.contrato_id_id, data_vencimento: @debito.data_vencimento, descricao: @debito.descricao, fixo: @debito.fixo, nome_debito: @debito.nome_debito, valor_debito: @debito.valor_debito } }
+    patch debito_url(@debito), params: { debito: { contrato_id_id: @debito.contrato_id_id, data_vencimento: @debito.data_vencimento, descricao: @debito.descricao, nome_debito: @debito.nome_debito, valor_debito: @debito.valor_debito } }
     assert_redirected_to debito_url(@debito)
   end
 

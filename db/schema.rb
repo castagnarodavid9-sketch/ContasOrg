@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_17_202142) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_17_204307) do
   create_table "contratos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.decimal "horas_mensais", precision: 10, scale: 2, null: false
@@ -25,12 +25,25 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_202142) do
     t.index ["userconf_id"], name: "index_contratos_on_userconf_id"
   end
 
+  create_table "debfixos", force: :cascade do |t|
+    t.string "cmpt_fim", null: false
+    t.string "cmpt_ini", null: false
+    t.integer "contrato_id", null: false
+    t.datetime "created_at", null: false
+    t.string "nome_debfx", null: false
+    t.boolean "quitado", default: false
+    t.datetime "updated_at", null: false
+    t.integer "userconf_id", null: false
+    t.decimal "valor_debfx", null: false
+    t.index ["contrato_id"], name: "index_debfixos_on_contrato_id"
+    t.index ["userconf_id"], name: "index_debfixos_on_userconf_id"
+  end
+
   create_table "debitos", force: :cascade do |t|
     t.integer "contrato_id", null: false
     t.datetime "created_at", null: false
     t.datetime "data_vencimento"
     t.text "descricao"
-    t.boolean "fixo", default: false
     t.string "nome_debito", null: false
     t.boolean "pago", default: false
     t.datetime "updated_at", null: false
@@ -63,6 +76,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_202142) do
   end
 
   add_foreign_key "contratos", "userconfs"
+  add_foreign_key "debfixos", "contratos"
+  add_foreign_key "debfixos", "userconfs"
   add_foreign_key "debitos", "contratos"
   add_foreign_key "debitos", "userconfs"
   add_foreign_key "userconfs", "users"

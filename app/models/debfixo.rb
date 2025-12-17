@@ -1,0 +1,2 @@
+class Debfixo < ApplicationRecord
+end
