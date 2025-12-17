@@ -1,8 +1,8 @@
 <h1>Seja bem-vindo!</h1>
 
 <nav>
-  <%= link_to "Contratos", contratos_path %> |
-  <%= link_to "Débitos", debitos_path %>
+  <%= link_to "Contratos", contratos_path %>
+  <%= link_to "| Débitos", debitos_path  if @contratos.present? %>
 </nav>
 
 <br><br>
