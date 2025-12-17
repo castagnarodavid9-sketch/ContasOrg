@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @debitos = Debito.where(userconf_id: current_user.userconf.id)
+    @debitos = Debito.pagos.where(userconf_id: current_user.userconf.id)
     @contratos = Contrato.all
     @contrato_salario = Contrato.find_by(userconf_id: current_user.userconf.id)
 
