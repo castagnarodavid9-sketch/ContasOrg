@@ -4,13 +4,33 @@
 
 <h1>Contratos</h1>
 
-<div id="contratos">
-  <% @contratos.each do |contrato| %>
-    <%= render contrato %>
-    <p>
-      <%= link_to "Show this contrato", contrato %>
-    </p>
-  <% end %>
-</div>
+<table>
+    <thead>
+      <tr>
+        <th>Nome da Empresa</th>
+        <th>Salário Bruto</th>
+        <th>Salário Líquido</th>
+        <th>Horas semanais</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% @contratos.each do |c| %>
+        <tr>
+          <td><%= c.nome_empresa %></td>
+          <td><%= c.salario_bruto %></td>
+          <td><%= c.salario_liquido %></td>
+          <td><%= c.horas_semanais %></td>
+          <td><%= link_to "Show this contrato", c %></td>
+        </tr>
+        <% @total_dividas %>
+      <% end %>
+    </tbody>
+</table>
+<hr>
+
+<br>
 
 <%= link_to "New contrato", new_contrato_path %>
+<%= link_to "Voltar", root_path %>
