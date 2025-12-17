@@ -2,7 +2,10 @@
 
 <nav>
   <%= link_to "Contratos", contratos_path %>
-  <%= link_to "| Débitos", debitos_path  if @contratos.present? %>
+  <% if @contratos.present? %>
+    <%= link_to "| Débitos", debitos_path %>
+    <%= link_to "| Débitos Fixos", debfixos_path %>
+  <% end %>
 </nav>
 
 <br><br>

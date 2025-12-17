@@ -1,6 +1,7 @@
 class Contrato < ApplicationRecord
   has_one :userconf
   has_many :debito
+  has_many :debfixo
   before_save :formata_salario
   before_save :gera_hora_extra
 

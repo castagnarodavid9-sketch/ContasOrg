@@ -22,6 +22,7 @@ class DebfixosController < ApplicationController
   # POST /debfixos or /debfixos.json
   def create
     @debfixo = Debfixo.new(debfixo_params)
+    @debfixo.userconf_id = current_user.userconf.id
 
     respond_to do |format|
       if @debfixo.save
@@ -65,6 +66,6 @@ class DebfixosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def debfixo_params
-      params.expect(debfixo: [ :nome_debfx, :valor_debfx, :cmpt_ini, :cmpt_fim, :quitado ])
+      params.expect(debfixo: [ :nome_debfx, :valor_debfx, :cmpt_ini, :cmpt_fim, :quitado, :contrato_id ])
     end
 end

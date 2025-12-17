@@ -12,28 +12,28 @@
   <% end %>
 
   <div>
-    <%= form.label :nome_debfx, style: "display: block" %>
+    <%= form.label "Nome do débito", style: "display: block" %>
     <%= form.text_field :nome_debfx %>
   </div>
 
   <div>
-    <%= form.label :valor_debfx, style: "display: block" %>
+    <%= form.label "Valor", style: "display: block" %>
     <%= form.text_field :valor_debfx %>
   </div>
 
   <div>
-    <%= form.label :cmpt_ini, style: "display: block" %>
-    <%= form.text_field :cmpt_ini %>
+    <%= form.label "Data do primeiro pagamento", style: "display: block" %>
+    <%= form.date_field :cmpt_ini %>
   </div>
 
   <div>
-    <%= form.label :cmpt_fim, style: "display: block" %>
-    <%= form.text_field :cmpt_fim %>
+    <%= form.label "Data do último pagamento", style: "display: block" %>
+    <%= form.date_field :cmpt_fim %>
   </div>
 
   <div>
-    <%= form.label :quitado, style: "display: block" %>
-    <%= form.checkbox :quitado %>
+    <%= form.label "Contrato", style: "display: block" %>
+    <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato" %>
   </div>
 
   <div>
