@@ -9,51 +9,53 @@
 
 <hr>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome do Débito</th>
-      <th>Valor (R$)</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    <% @debitos.each do |d| %>
+<% if @debitos.present? && @contrato_salario.present? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= d.nome_debito %></td>
-        <td><%= number_to_currency(d.valor_debito, unit: "R$", separator: ",", delimiter: ".") %></td>
-        <td><%= d.descricao %></td>
+        <th>Nome do Débito</th>
+        <th>Valor (R$)</th>
+        <th>Descrição</th>
       </tr>
-      <% @total_dividas %>
-    <% end %>
+    </thead>
 
-    <tr>
-        <td></td>
-        <td><hr>Valor Total : <%= number_to_currency(@total_dividas, unit: "R$", separator: ",", delimiter: ".") %> <hr></td>
-    </tr>
-  </tbody>
+    <tbody>
 
-  <tfoot>
-    <tr>
-      <td colspan="3">
-        <hr>
-        <strong>Salário bruto:</strong>
-        <%= number_to_currency(@contrato_salario.salario_bruto, unit: "R$", separator: ",", delimiter: ".") %>
-        <br>
-        <strong>Salário líquido:</strong>
-        <%= number_to_currency(@contrato_salario.salario_liquido, unit: "R$", separator: ",", delimiter: ".") %>
-        <br>
-        <strong>Sobra de salário:</strong>
-        <%= @sobra_salario %>
-        <hr>
-      </td>
-    </tr>
-  </tfoot>
-</table>
-<hr>
+      <% @debitos.each do |d| %>
+        <tr>
+          <td><%= d.nome_debito %></td>
+          <td><%= number_to_currency(d.valor_debito, unit: "R$", separator: ",", delimiter: ".") %></td>
+          <td><%= d.descricao %></td>
+        </tr>
+        <% @total_dividas %>
+      <% end %>
 
-<br>
+      <tr>
+          <td></td>
+          <td><hr>Valor Total : <%= number_to_currency(@total_dividas, unit: "R$", separator: ",", delimiter: ".") %> <hr></td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <hr>
+          <strong>Salário bruto:</strong>
+          <%= number_to_currency(@contrato_salario.salario_bruto, unit: "R$", separator: ",", delimiter: ".") %>
+          <br>
+          <strong>Salário líquido:</strong>
+          <%= number_to_currency(@contrato_salario.salario_liquido, unit: "R$", separator: ",", delimiter: ".") %>
+          <br>
+          <strong>Sobra de salário:</strong>
+          <%= @sobra_salario %>
+          <hr>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+
+  <br>
+<% end %>
 
 <%= button_to "Sair", destroy_user_session_path, method: :delete %>

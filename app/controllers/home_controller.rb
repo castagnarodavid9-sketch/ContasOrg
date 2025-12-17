@@ -11,6 +11,10 @@ class HomeController < ApplicationController
       @total_dividas += dd.valor_debito
     end
 
-    @sobra_salario = @contrato_salario.salario_liquido - @total_dividas
+    if @contrato_salario.present?
+      @sobra_salario = (@contrato_salario.salario_liquido - @total_dividas)
+    else
+      @sobra_salario = "Nenhum dado inserido!"
+    end
   end
 end
