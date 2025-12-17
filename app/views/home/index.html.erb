@@ -1,4 +1,4 @@
-<h1>Seja bem-vindo!</h1>
+<h1>Seja bem-vindo <%= current_user.userconf.nome %>!</h1>
 
 <nav>
   <%= link_to "Contratos", contratos_path %>
@@ -24,7 +24,7 @@
       <% @debitos.each do |d| %>
         <tr>
           <td><%= d.nome_debito %></td>
-          <td><%= number_to_currency(d.valor_debito, unit: "R$", separator: ",", delimiter: ".") %></td>
+          <td><%= formata_moedas(d.valor_debito) %></td>
           <td><%= d.descricao %></td>
         </tr>
         <% @total_dividas %>
@@ -32,7 +32,7 @@
 
       <tr>
           <td></td>
-          <td><hr>Valor Total : <%= number_to_currency(@total_dividas, unit: "R$", separator: ",", delimiter: ".") %> <hr></td>
+          <td><hr>Valor Total : <%= formata_moedas(@total_dividas) %><hr></td>
       </tr>
     </tbody>
 
@@ -41,13 +41,13 @@
         <td colspan="3">
           <hr>
           <strong>Salário bruto:</strong>
-          <%= number_to_currency(@contrato_salario.salario_bruto, unit: "R$", separator: ",", delimiter: ".") %>
+          <%= formata_moedas(@contrato_salario.salario_bruto) %>
           <br>
           <strong>Salário líquido:</strong>
-          <%= number_to_currency(@contrato_salario.salario_liquido, unit: "R$", separator: ",", delimiter: ".") %>
+          <%= formata_moedas(@contrato_salario.salario_liquido) %>
           <br>
           <strong>Sobra de salário:</strong>
-          <%= @sobra_salario %>
+          <%= formata_moedas(@sobra_salario) %>
           <hr>
         </td>
       </tr>

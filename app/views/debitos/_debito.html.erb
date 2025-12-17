@@ -6,7 +6,7 @@
 
   <div>
     <strong>Valor debito:</strong>
-    <%= debito.valor_debito %>
+    <%= formata_moedas(debito.valor_debito) %>
   </div>
 
   <div>
@@ -16,17 +16,17 @@
 
   <div>
     <strong>Fixo:</strong>
-    <%= debito.fixo %>
+    <%= debito.fixo? ? "Sim" : "Não" %>
   </div>
 
   <div>
     <strong>Data vencimento:</strong>
-    <%= debito.data_vencimento %>
+    <%= formata_datas(debito.data_vencimento) %>
   </div>
 
   <div>
     <strong>Contrato:</strong>
-    <%= debito.contrato_id %>
+    <%= debito.contrato.nome_empresa %>
   </div>
 
 </div>

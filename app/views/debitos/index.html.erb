@@ -21,10 +21,10 @@
       <% @debitos.each do |d| %>
         <tr>
           <td><%= d.nome_debito %></td>
-          <td><%= d.valor_debito %></td>
+          <td><%= formata_moedas(d.valor_debito) %></td>
           <td><%= d.descricao %></td>
           <td><%= d.fixo? ? "Sim" : "Não" %></td>
-          <td><%= d.data_vencimento%></td>
+          <td><%= formata_datas(d.data_vencimento) %></td>
           <td><%= d.contrato.nome_empresa %></td>
           <td><%= link_to "Visualizar", d %></td>
         </tr>

@@ -22,7 +22,7 @@
           <td><%= c.salario_bruto %></td>
           <td><%= c.salario_liquido %></td>
           <td><%= c.horas_semanais %></td>
-          <td><%= link_to "Show this contrato", c %></td>
+          <td><%= link_to "Visualizar", c %></td>
         </tr>
       <% end %>
     </tbody>
@@ -31,5 +31,5 @@
 
 <br>
 
-<%= link_to "New contrato", new_contrato_path %>
+<%= link_to "Criar novo", new_contrato_path %>
 <%= link_to "Voltar", root_path %>
