@@ -10,15 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_16_161757) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_17_140634) do
   create_table "contratos", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.decimal "horas_mensais", precision: 10, scale: 2, null: false
     t.integer "horas_semanais", null: false
     t.string "nome_empresa", null: false
     t.decimal "salario_bruto", null: false
     t.decimal "salario_liquido", null: false
     t.datetime "updated_at", null: false
     t.integer "userconf_id", null: false
+    t.decimal "vlr_hr_extra", precision: 10, scale: 2, null: false
+    t.decimal "vlr_hr_normal", precision: 10, scale: 2, null: false
     t.index ["userconf_id"], name: "index_contratos_on_userconf_id"
   end
 
