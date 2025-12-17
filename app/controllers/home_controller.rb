@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @debitos = Debito.pagos.where(userconf_id: current_user.userconf.id)
+    @debfixos = Debfixo.nao_quitado.where(userconf_id: current_user.userconf.id)
     @contratos = Contrato.all
     @contrato_salario = Contrato.find_by(userconf_id: current_user.userconf.id)
 
