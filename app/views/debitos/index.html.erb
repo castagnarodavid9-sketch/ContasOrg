@@ -4,13 +4,36 @@
 
 <h1>Debitos</h1>
 
-<div id="debitos">
-  <% @debitos.each do |debito| %>
-    <%= render debito %>
-    <p>
-      <%= link_to "Show this debito", debito %>
-    </p>
-  <% end %>
-</div>
+<table>
+    <thead>
+      <tr>
+        <th>Nome do Débito</th>
+        <th>Valor do Débito</th>
+        <th>Descrição</th>
+        <th>Fixo por mês?</th>
+        <th>Data de Vencimento</th>
+        <th>Contrato</th>
+      </tr>
+    </thead>
 
-<%= link_to "New debito", new_debito_path %>
+    <tbody>
+
+      <% @debitos.each do |d| %>
+        <tr>
+          <td><%= d.nome_debito %></td>
+          <td><%= d.valor_debito %></td>
+          <td><%= d.descricao %></td>
+          <td><%= d.fixo? ? "Sim" : "Não" %></td>
+          <td><%= d.data_vencimento%></td>
+          <td><%= d.contrato.nome_empresa %></td>
+          <td><%= link_to "Visualizar", d %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+<hr>
+
+<br>
+
+<%= link_to "Criar novo", new_debito_path %>
+<%= link_to "Voltar", root_path%>
