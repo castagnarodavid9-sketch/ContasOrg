@@ -13,20 +13,20 @@
 
   <div class="field">
     <%= form.label "Nome da empresa :" %><br />
-    <%= form.text_field :nome_empresa %>
+    <%= form.text_field :nome_empresa, placeholder: "Digite um nome", title: "Informe o nome da empresa que vai ser criado o contrato", required: true %>
   </div>
 
   <div class="field">
     <%= form.label "Salário bruto :" %><br />
-    <%= form.text_field :salario_bruto %>
+    <%= form.text_field :salario_bruto, placeholder: "Digite um valor", title: "Informe o salário bruto por mensal", required: true %>
   </div>
 
   <div class="field">
     <%= form.label "Horas semanais trabalhadas" %><br />
-    <%= form.number_field :horas_semanais %>
+    <%= form.number_field :horas_semanais, placeholder: "Digite um valor", title: "Informe suas horas semanais", required: true %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Criar contrato" %>
   </div>
 <% end %>
