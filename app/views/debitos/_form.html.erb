@@ -13,32 +13,32 @@
 
   <div>
     <%= form.label :nome_debito, style: "display: block" %>
-    <%= form.text_field :nome_debito %>
+    <%= form.text_field :nome_debito, placeholder: "Digite um nome", required: true, title: "Informe um nome para esse débito" %>
   </div>
 
   <div>
     <%= form.label :valor_debito, style: "display: block" %>
-    <%= form.text_field :valor_debito %>
+    <%= form.text_field :valor_debito, placeholder: "Digite um valor", required: true, title: "Informe um valor para esse débito" %>
   </div>
 
   <div>
     <%= form.label :descricao, style: "display: block" %>
-    <%= form.textarea :descricao %>
+    <%= form.textarea :descricao, placeholder: "Informe uma descrição para esse débito", required: true, title: "Informe uma descrição para esse débito (opcional)"%>
   </div>
 
   <div>
     <%= form.label :data_vencimento, style: "display: block" %>
-    <%= form.date_field :data_vencimento %>
+    <%= form.date_field :data_vencimento, required: true, title: "Informe uma data de vencimento para esse débito"%>
   </div>
 
   <div>
     <%= form.label "Contrato", style: "display: block" %>
-    <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato" %>
+    <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato..." %>
   </div>
 
   <br>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Criar débito" %>
   </div>
 <% end %>
