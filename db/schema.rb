@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_17_204307) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_18_124430) do
   create_table "contratos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.decimal "horas_mensais", precision: 10, scale: 2, null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_204307) do
   end
 
   create_table "debitos", force: :cascade do |t|
+    t.string "cmpt"
     t.integer "contrato_id", null: false
     t.datetime "created_at", null: false
     t.datetime "data_vencimento"

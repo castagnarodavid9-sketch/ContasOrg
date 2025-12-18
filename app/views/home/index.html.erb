@@ -10,6 +10,7 @@
 
 <br><br>
 
+<h3>Débitos relativos a competência <%= formata_datas(Date.today) %> - (<%= CalculosSistema.gera_cmpt(Date.today)%>)</h3>
 <hr>
 
 <% if @debitos.present? && @contrato_salario.present? %>
@@ -19,6 +20,8 @@
         <th>Nome do Débito</th>
         <th>Valor (R$)</th>
         <th>Descrição</th>
+        <th>Data de vencimento</th>
+        <th>Competência</th>
       </tr>
     </thead>
 
@@ -29,6 +32,8 @@
           <td><%= d.nome_debito %></td>
           <td><%= formata_moedas(d.valor_debito) %></td>
           <td><%= d.descricao %></td>
+          <td><%= formata_datas(d.data_vencimento) %></td>
+          <td><%= d.cmpt %></td>
         </tr>
         <% @total_dividas %>
       <% end %>
