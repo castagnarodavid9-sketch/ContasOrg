@@ -26,6 +26,15 @@
     </thead>
 
     <tbody>
+      <% @debfixos.each do |db|%>
+        <tr>
+          <td><%= db.nome_debfx %></td>
+          <td><%= formata_moedas(db.valor_debfx) %></td>
+          <td>Débito fixo</td>
+          <td>Mensal</td>
+        <td><%= "#{db.cmpt_ini} - #{db.cmpt_fim}" %></td>
+        </tr>
+      <% end %>
 
       <% @debitos.each do |d| %>
         <tr>
