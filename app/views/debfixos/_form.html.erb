@@ -13,30 +13,30 @@
 
   <div>
     <%= form.label "Nome do débito", style: "display: block" %>
-    <%= form.text_field :nome_debfx %>
+    <%= form.text_field :nome_debfx, placeholder: "Digite o nome do débito", required: true, title: "Digite um nome para esse Débito fixo" %>
   </div>
 
   <div>
     <%= form.label "Valor", style: "display: block" %>
-    <%= form.text_field :valor_debfx %>
+    <%= form.text_field :valor_debfx, placeholder: "Valor pago por mês", required: true, title: "Digite o valor pago por mês" %>
   </div>
 
   <div>
     <%= form.label "Data do primeiro pagamento", style: "display: block" %>
-    <%= form.date_field :cmpt_ini %>
+    <%= form.date_field :cmpt_ini, required: true, title: "Digite a data inicial do pagamento (convertido para YYYYMM)" %>
   </div>
 
   <div>
     <%= form.label "Data do último pagamento", style: "display: block" %>
-    <%= form.date_field :cmpt_fim %>
+    <%= form.date_field :cmpt_fim, required: true, title: "Digite a data final do pagamento (convertido para YYYYMM)"%>
   </div>
 
   <div>
     <%= form.label "Contrato", style: "display: block" %>
-    <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato" %>
+    <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato...", required: true %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Criar débito fixo"%>
   </div>
 <% end %>

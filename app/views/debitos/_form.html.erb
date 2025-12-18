@@ -30,7 +30,10 @@
     <%= form.label :data_vencimento, style: "display: block" %>
     <%= form.date_field :data_vencimento, required: true, title: "Informe uma data de vencimento para esse débito"%>
   </div>
+  <%= link_to "Criar débito fixo", debfixos_path, title: "Em casos de débitos que vão perdurar por mais de um mês"%>
 
+  <br>
+  
   <div>
     <%= form.label "Contrato", style: "display: block" %>
     <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato..." %>
