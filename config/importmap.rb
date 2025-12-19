@@ -6,3 +6,8 @@ pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "jquery" # @3.7.1
+
+pin "utils/formatacoes", to: "utils/formatacoes.js"
+pin "contrato", to: "contrato.js"
+
+
