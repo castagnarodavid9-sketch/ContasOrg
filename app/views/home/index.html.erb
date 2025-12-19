@@ -13,7 +13,7 @@
 <h3>Débitos relativos a competência <%= formata_datas(Date.today) %> - (<%= CalculosSistema.gera_cmpt(Date.today)%>)</h3>
 <hr>
 
-<% if @debitos.present? && @contrato_salario.present? %>
+<% if (@debitos.present? || @debfixos.present?) && @contrato_salario.present? %>
   <table>
     <thead>
       <tr>

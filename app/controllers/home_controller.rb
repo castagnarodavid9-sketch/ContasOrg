@@ -14,15 +14,15 @@ class HomeController < ApplicationController
       @total_dividas += dd.valor_debito
     end
 
-    @debfixos.each do |db|
-      @total_dividas += db.valor_debfx
-    end
+    # @debfixos.each do |db|
+    #   @total_dividas += db.valor_debfx
+    # end
 
 
     if @contrato_salario.present?
       @sobra_salario = (@contrato_salario.salario_liquido - @total_dividas)
     else
-      @sobra_salario = "Nenhum dado inserido!"
+      @sobra_salario = 0
     end
   end
 end
