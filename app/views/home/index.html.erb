@@ -43,6 +43,8 @@
           <td><%= d.descricao %></td>
           <td><%= formata_datas(d.data_vencimento) %></td>
           <td><%= d.cmpt %></td>
+          <td><%= link_to "Editar", edit_debito_path(d.id) %></td>
+          <td><%= button_to "Excluir", d, method: :delete %></td>
         </tr>
         <% @total_dividas %>
       <% end %>
