@@ -1,7 +1,8 @@
 class Debito < ApplicationRecord
+  paginates_per 5
   has_one :userconf
   belongs_to :contrato
-  scope :pagos, -> { where(:pago => false)}
+  scope :pagos, -> { where(pago: false)}
   before_save :seta_cmpt
   validate :valida_campos
 

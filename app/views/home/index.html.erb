@@ -11,6 +11,15 @@
 <br><br>
 
 <h3>Débitos relativos a competência <%= formata_datas(Date.today) %> - (<%= CalculosSistema.gera_cmpt(Date.today)%>)</h3>
+
+<%= form_with url: root_path, method: :get, local: true do |form| %>
+  <%= form.text_field :search,
+        value: params[:search],
+        placeholder: "Pesquisar competência" %>
+
+  <%= form.submit "Pesquisar" %>
+<% end %>
+
 <hr>
 
 <% if (@debitos.present? || @debfixos.present?) && @contrato_salario.present? %>
@@ -54,6 +63,8 @@
           <td><hr>Valor Total : <%= formata_moedas(@total_dividas) %><hr></td>
       </tr>
     </tbody>
+
+    <%= paginate @debitos, params: { search: params[:search] } %>
 
     <tfoot>
       <tr>

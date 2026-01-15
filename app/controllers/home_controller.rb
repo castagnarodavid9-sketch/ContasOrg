@@ -3,7 +3,17 @@ class HomeController < ApplicationController
 
   def index
     cmpt_atual = CalculosSistema.gera_cmpt(Date.today)
-    @debitos = Debito.pagos.where(userconf_id: current_user.userconf.id, cmpt: cmpt_atual)
+
+    @debitos = Debito.pagos.where(userconf_id: current_user.userconf.id)
+
+    if params[:search].present?
+      @debitos = @debitos.where("cmpt LIKE ? ", "%#{params[:search]}%")
+    else
+      @debitos = @debitos.where("cmpt LIKE ? ", cmpt_atual)
+    end
+
+    @debitos = @debitos.page(params[:page]).per(5)
+
     @debfixos = Debfixo.nao_quitado.where(userconf_id: current_user.userconf.id).where("? BETWEEN cmpt_ini AND cmpt_fim", cmpt_atual)
     @contratos = Contrato.all
     @contrato_salario = Contrato.find_by(userconf_id: current_user.userconf.id)
