@@ -24,6 +24,7 @@ class ContratosController < ApplicationController
   def create
     @contrato = Contrato.new(contrato_params)
     @contrato.userconf_id = current_user.userconf.id
+    @contrato.salario_bruto = remove_formato_moeda(params[:contrato][:salario_bruto]) || 0
 
     respond_to do |format|
       if @contrato.save
@@ -68,5 +69,12 @@ class ContratosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def contrato_params
       params.require(:contrato).permit(:nome_empresa, :salario_bruto, :salario_liquido, :horas_semanais)
+    end
+
+    def remove_formato_moeda(valor)
+      valor
+        .gsub(/[^\d,]/, "")
+        .gsub(",", ".")
+        .to_f
     end
 end

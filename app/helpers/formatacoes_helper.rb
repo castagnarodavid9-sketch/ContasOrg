@@ -1,3 +1,4 @@
+require 'bigdecimal'
 module FormatacoesHelper
   def formata_datas(data)
     return "" if !data.present?
@@ -10,4 +11,11 @@ module FormatacoesHelper
     value = number_to_currency(valor, unit: "R$", separator: ",", delimiter: ".")
     return value
   end
+
+  def remove_formato_moeda(valor)
+    BigDecimal(
+      valor.gsub(/[^\d,]/, "").gsub(",", ".")
+    )
+  end
+
 end
