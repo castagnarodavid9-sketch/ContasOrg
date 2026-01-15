@@ -10,7 +10,7 @@
 
 <br><br>
 
-<h3>Débitos relativos a competência <%= formata_datas(Date.today) %> - (<%= CalculosSistema.gera_cmpt(Date.today)%>)</h3>
+<h3>Débitos relativos a competência <%= formata_datas(Date.today) if !params[:search].present? %> - (<%= params[:search].present? ? "#{params[:search]}" : CalculosSistema.gera_cmpt(Date.today)%>)</h3>
 
 <%= form_with url: root_path, method: :get, local: true do |form| %>
   <%= form.text_field :search,
