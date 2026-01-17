@@ -22,13 +22,13 @@
   </div>
 
   <div>
-    <%= form.label "Data do primeiro pagamento", style: "display: block" %>
-    <%= form.date_field :cmpt_ini, required: true, title: "Digite a data inicial do pagamento (convertido para YYYYMM)" %>
+    <%= form.label "Quantidade de parcelas", style: "display: block" %>
+    <%= form.number_field :parcela, placeholder: "Vezes parcelado", required: true, title: "Digite em quantas vezes o débito vai ser parcelado" %>
   </div>
 
   <div>
-    <%= form.label "Data do último pagamento", style: "display: block" %>
-    <%= form.date_field :cmpt_fim, required: true, title: "Digite a data final do pagamento (convertido para YYYYMM)"%>
+    <%= form.label "Data do primeiro pagamento", style: "display: block" %>
+    <%= form.date_field :cmpt_ini, required: true, title: "Digite a data inicial do pagamento (convertido para YYYYMM)" %>
   </div>
 
   <div>

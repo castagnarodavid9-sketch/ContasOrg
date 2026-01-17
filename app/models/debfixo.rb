@@ -2,7 +2,7 @@ class Debfixo < ApplicationRecord
   has_one :userconf
   belongs_to :contrato
   scope :nao_quitado, -> { where(:quitado => false)}
-  before_save :gera_competencia
+  before_save :gera_cmpt_final
   validate :valida_campos
 
   def valida_campos
@@ -15,16 +15,14 @@ class Debfixo < ApplicationRecord
     errors.add(:base, "Formato de valor não aceito!") if self.valor_debfx.to_s.match?(/\A\d+\z/)
     errors.add(:base, "Débito não pode ser menor que R$ 0, 00 reais!") if self.valor_debfx <= 0
 
-    # Valida regra de negocio
-    errors.add(:base, "Data inicial do débito não pode ser maior que a data final!") if CalculosSistema.gera_cmpt(self.cmpt_ini) > CalculosSistema.gera_cmpt(self.cmpt_fim)
-    errors.add(:base, "Data inicial do débito não pode ser igual a data final!") if CalculosSistema.gera_cmpt(self.cmpt_ini) == CalculosSistema.gera_cmpt(self.cmpt_fim)
   end
 
   private
-  def gera_competencia
-    if self.cmpt_ini.present? && self.cmpt_fim.present?
+
+  def gera_cmpt_final
+    if self.cmpt_ini.present? && self.parcela.present?
       self.cmpt_ini = CalculosSistema.gera_cmpt(self.cmpt_ini)
-      self.cmpt_fim = CalculosSistema.gera_cmpt(self.cmpt_fim)
+      self.cmpt_fim = (self.cmpt_ini.to_i + self.parcela)
     end
   end
 end

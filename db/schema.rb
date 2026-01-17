@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_18_124430) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_17_143916) do
   create_table "contratos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.decimal "horas_mensais", precision: 10, scale: 2, null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_18_124430) do
     t.integer "contrato_id", null: false
     t.datetime "created_at", null: false
     t.string "nome_debfx", null: false
+    t.integer "parcela"
     t.boolean "quitado", default: false
     t.datetime "updated_at", null: false
     t.integer "userconf_id", null: false

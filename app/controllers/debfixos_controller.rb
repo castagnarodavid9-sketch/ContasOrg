@@ -66,6 +66,6 @@ class DebfixosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def debfixo_params
-      params.expect(debfixo: [ :nome_debfx, :valor_debfx, :cmpt_ini, :cmpt_fim, :quitado, :contrato_id ])
+      params.expect(debfixo: [ :nome_debfx, :valor_debfx, :cmpt_ini, :cmpt_fim, :quitado, :contrato_id, :parcela ])
     end
 end
