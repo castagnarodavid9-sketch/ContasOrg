@@ -28,6 +28,7 @@ class Debfixo < ApplicationRecord
     data = Date.new(ano, mes, 1) + parcela.months
 
     self.cmpt_fim = data.strftime("%Y%m").to_s
+    self.cmpt_ini = CalculosSistema.gera_cmpt(self.cmpt_ini)
   end
 
 end
