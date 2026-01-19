@@ -5,9 +5,11 @@ class HomeController < ApplicationController
     cmpt_atual = CalculosSistema.gera_cmpt(Date.today)
 
     @debitos = Debito.pagos.where(userconf_id: current_user.userconf.id)
+    @search = ""
 
-    if params[:search].present?
-      @debitos = @debitos.where("cmpt LIKE ? ", "%#{params[:search]}%")
+    if params[:search].present? || @search.present?
+      @search = params[:search]
+      @debitos = @debitos.where("cmpt LIKE ? ", "%#{@search}%")
     else
       @debitos = @debitos.where("cmpt LIKE ? ", cmpt_atual)
     end

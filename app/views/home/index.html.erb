@@ -62,9 +62,10 @@
           <td></td>
           <td><hr>Valor Total : <%= formata_moedas(@total_dividas) %><hr></td>
       </tr>
+      <tr>
+        <td><hr><%= paginate @debitos, params: { search: params[:search] } %><hr></td>
+      </tr>
     </tbody>
-
-    <%= paginate @debitos, params: { search: params[:search] } %>
 
     <tfoot>
       <tr>
@@ -82,7 +83,9 @@
         </td>
       </tr>
     </tfoot>
+    
   </table>
+  
   <hr>
 
   <br>
