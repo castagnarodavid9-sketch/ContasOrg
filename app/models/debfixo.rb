@@ -20,9 +20,14 @@ class Debfixo < ApplicationRecord
   private
 
   def gera_cmpt_final
-    if self.cmpt_ini.present? && self.parcela.present?
-      self.cmpt_ini = CalculosSistema.gera_cmpt(self.cmpt_ini)
-      self.cmpt_fim = (self.cmpt_ini.to_i + self.parcela)
-    end
+    return unless cmpt_ini.present? && parcela.present?
+
+    ano  = cmpt_ini.to_s[0,4].to_i
+    mes  = cmpt_ini.to_s[-2..].to_i
+
+    data = Date.new(ano, mes, 1) + parcela.months
+
+    self.cmpt_fim = data.strftime("%Y%m").to_s
   end
+
 end
