@@ -1,8 +1,14 @@
+<style>
+  /* Inicialmente escondido */
+  #parcela {
+    display: none;
+  }
+</style>
+
 <%= form_with(model: debito) do |form| %>
   <% if debito.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(debito.errors.count, "error") %> prohibited this debito from being saved:</h2>
-
       <ul>
         <% debito.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -23,20 +29,23 @@
 
   <div>
     <%= form.label :descricao, style: "display: block" %>
-    <%= form.textarea :descricao, placeholder: "Informe uma descrição para esse débito", required: true, title: "Informe uma descrição para esse débito (opcional)"%>
+    <%= form.text_area :descricao, placeholder: "Informe uma descrição para esse débito", required: true, title: "Informe uma descrição para esse débito (opcional)" %>
   </div>
 
   <div>
     <%= form.label :data_vencimento, style: "display: block" %>
-    <%= form.date_field :data_vencimento, required: true, title: "Informe uma data de vencimento para esse débito"%>
+    <%= form.date_field :data_vencimento, required: true, title: "Informe uma data de vencimento para esse débito" %>
   </div>
 
   <br>
 
-  <div><label>Parcelado</label></label><input type="checkbox" name="aceito" id="toggleDiv" value="1"></div>
+  <div>
+    <label for="toggleDiv">Parcelado</label>
+    <input type="checkbox" id="toggleDiv" value="1">
+  </div>
 
   <div id="parcela">
-      <%= number_field_tag :nro_vezes, required: true, placeholder: "N° de parcelas", title: "Informe a quantidade de vezes que o débito foi parcelado"%>
+    <%= number_field_tag :nro_vezes, nil, required: true, placeholder: "N° de parcelas", title: "Informe a quantidade de vezes que o débito foi parcelado" %>
   </div>
 
   <br>
@@ -54,11 +63,19 @@
 <% end %>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
   const checkbox_parcela = document.getElementById("toggleDiv");
   const div_parcela = document.getElementById("parcela");
 
-  div_parcela.style.display="none";
-  checkbox_parcela.addEventListener("change", function(){
-    div_parcela.style.display=(this.checked ? "block" : "none");
+  // Garante que o campo comece escondido
+  div_parcela.style.display = 'none';
+
+  checkbox_parcela.addEventListener("change", function() {
+    if (this.checked) {
+      div_parcela.style.display = 'block';
+    } else {
+      div_parcela.style.display = 'none';
+    }
   });
+});
 </script>

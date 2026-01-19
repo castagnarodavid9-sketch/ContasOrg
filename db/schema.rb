@@ -29,7 +29,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_19_184935) do
     t.string "cmpt"
     t.integer "contrato_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "data_vencimento"
     t.text "descricao"
     t.string "nome_debito", null: false
     t.integer "nro_parcela"

@@ -25,11 +25,6 @@ class DebitosController < ApplicationController
     nro_vezes = params[:nro_vezes].to_i
     valor_total = params[:debito][:valor_debito].to_f
 
-    # Validações iniciais
-    if nro_vezes <= 0
-      return redirect_to new_debito_path, alert: "Número de parcelas deve ser maior que zero."
-    end
-
     if valor_total <= 0
       return redirect_to new_debito_path, alert: "Valor do débito inválido."
     end
@@ -48,6 +43,7 @@ class DebitosController < ApplicationController
         @debito = Debito.new(debito_params.except(:cmpt, :data_vencimento, :nro_vezes))
         @debito.valor_debito = vlr_parcela
         @debito.cmpt = (data_inicio >> i).strftime("%Y%m") # competência sequencial
+        @debito.nro_parcela = (i + 1)
         @debito.userconf_id = current_user.userconf.id
         @debito.save!
       end
