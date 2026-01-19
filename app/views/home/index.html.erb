@@ -4,7 +4,6 @@
   <%= link_to "Contratos", contratos_path %>
   <% if @contratos.present? %>
     <%= link_to "| Débitos", debitos_path %>
-    <%= link_to "| Débitos Fixos", debfixos_path %>
   <% end %>
 </nav>
 
@@ -22,7 +21,7 @@
 
 <hr>
 
-<% if (@debitos.present? || @debfixos.present?) && @contrato_salario.present? %>
+<% if @debitos.present? && @contrato_salario.present? %>
   <table>
     <thead>
       <tr>
@@ -35,15 +34,6 @@
     </thead>
 
     <tbody>
-      <% @debfixos.each do |db|%>
-        <tr>
-          <td><%= db.nome_debfx %></td>
-          <td><%= formata_moedas(db.valor_debfx) %></td>
-          <td>Débito fixo</td>
-          <td>Mensal</td>
-        <td><%= "#{db.cmpt_ini} - #{db.cmpt_fim}" %></td>
-        </tr>
-      <% end %>
 
       <% @debitos.each do |d| %>
         <tr>
