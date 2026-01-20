@@ -6,8 +6,9 @@ class HomeController < ApplicationController
 
     @debitos = Debito.where(userconf_id: current_user.userconf.id)    
 
-    if params[:search].present? || @search.present?      
-      @debitos = @debitos.where("cmpt LIKE ? ", "%#{@search}%")
+    if params[:search].present?     
+      @debitos = @debitos.where("cmpt LIKE ? ", "%#{params[:search]}%")
+      puts "Debitos #{@debitos.to_sql}"
     else
       @debitos = @debitos.where("cmpt LIKE ? ", cmpt_atual)
     end

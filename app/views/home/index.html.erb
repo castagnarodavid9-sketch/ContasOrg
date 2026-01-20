@@ -28,7 +28,7 @@
         <th>Nome do Débito</th>
         <th>Valor (R$)</th>
         <th>Descrição</th>
-        <th>Data de vencimento</th>
+        <!--<th>Data de vencimento</th>-->
         <th>Competência</th>
       </tr>
     </thead>
@@ -40,7 +40,7 @@
           <td><%= d.nome_debito %></td>
           <td><%= formata_moedas(d.valor_debito) %></td>
           <td><%= d.descricao %></td>
-          <td><%= d.cmpt %></td>
+          <!--<td><%= d.cmpt %></td>-->
           <td><%= link_to "Editar", edit_debito_path(d.id) %></td>
           <td><%= button_to "Excluir", d, method: :delete %></td>
         </tr>

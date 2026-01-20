@@ -44,7 +44,7 @@
   </div>
 
   <div id="parcela">
-    <%= number_field_tag :nro_vezes, nil, required: true, placeholder: "N° de parcelas", title: "Informe a quantidade de vezes que o débito foi parcelado" %>
+    <%= number_field_tag :nro_vezes, placeholder: "N° de parcelas", title: "Informe a quantidade de vezes que o débito foi parcelado" %>
   </div>
 
   <br>
@@ -68,8 +68,10 @@ $(document).ready(function () {
     $("#toggleDiv").change(function () {
         if ($(this).is(":checked")) {
             $("#parcela").css("display", "block");
+            $("#nro_vezes").prop("required", true);
         } else {
             $("#parcela").css("display", "none");
+            $("#nro_vezes").prop("required", false);
         }
     });
 });
