@@ -1,5 +1,4 @@
 <style>
-  /* Inicialmente escondido */
   #parcela {
     display: none;
   }
@@ -63,19 +62,16 @@
 <% end %>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const checkbox_parcela = document.getElementById("toggleDiv");
-  const div_parcela = document.getElementById("parcela");
-
-  // Garante que o campo comece escondido
-  div_parcela.style.display = 'none';
-
-  checkbox_parcela.addEventListener("change", function() {
-    if (this.checked) {
-      div_parcela.style.display = 'block';
-    } else {
-      div_parcela.style.display = 'none';
-    }
-  });
+$(document).ready(function () {
+    console.log("Página carregada!");
+    
+    $("#toggleDiv").change(function () {
+        if ($(this).is(":checked")) {
+            $("#parcela").css("display", "block");
+        } else {
+            $("#parcela").css("display", "none");
+        }
+    });
 });
 </script>
+

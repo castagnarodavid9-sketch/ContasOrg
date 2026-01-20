@@ -3,6 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "contrato"
 
-import * as $ from 'jquery';
-window.$ = $
-window.jQuery = $
+import jQuery from "jquery"
+window.$ = jQuery
+window.jQuery = jQuery
