@@ -1,37 +1,38 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Debitos" %>
-
-<h1>Debitos</h1>
-
-<table>
-    <thead>
-      <tr>
-        <th>Nome do Débito</th>
-        <th>Valor do Débito</th>
-        <th>Descrição</th>
-        <th>Data de Vencimento</th>
-        <th>Contrato</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <% @debitos.each do |d| %>
+<div class="modal">
+  <div class="card-header">
+    Featured
+  </div>
+  <h1>Debitos</h1>
+  
+  <table>
+      <thead>
         <tr>
-          <td><%= d.nome_debito %></td>
-          <td><%= formata_moedas(d.valor_debito) %></td>
-          <td><%= d.descricao %></td>
-          <td><%= d.contrato.nome_empresa %></td>
-          <td><%= link_to "Visualizar", d %></td>
-          <td><%= button_to "Excluir", d, method: :delete %></td>
+          <th>Nome do Débito</th>
+          <th>Valor do Débito</th>
+          <th>Descrição</th>
+          <th>Data de Vencimento</th>
+          <th>Contrato</th>
         </tr>
-      <% end %>
-    </tbody>
-</table>
-<hr>
-
-<br>
-
-<%= link_to "Criar novo", new_debito_path %>
-<%= link_to "Voltar", root_path%>
+      </thead>
+  
+      <tbody>
+  
+        <% @debitos.each do |d| %>
+          <tr>
+            <td><%= d.nome_debito %></td>
+            <td><%= formata_moedas(d.valor_debito) %></td>
+            <td><%= d.descricao %></td>
+            <td><%= d.contrato.nome_empresa %></td>
+            <td><%= link_to "Visualizar", d %></td>
+            <td><%= button_to "Excluir", d, method: :delete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  <hr>
+  
+  <br>
+  
+  <%= link_to "Criar novo", new_debito_path %>
+  <%= link_to "Voltar", root_path%>
+</div>
