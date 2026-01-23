@@ -1,0 +1,32 @@
+<!-- MENU LATERAL -->
+<span class="menu-toggle">☰</span>
+<div class="sidebar">
+<p class="text-center text-white fs-5 fw-bolder">Seja bem vindo, <%= "#{current_user.userconf.nome}"%>!</p>
+
+<%= link_to "🏠 Home #{current_page?(root_path) ? '👈' : ''}", root_path %>
+<%= link_to "💲 Débitos #{current_page?(debitos_path) ? '👈' : ''}", debitos_path %>
+<%= link_to "📝 Contratos #{current_page?(contratos_path) ? '👈' : ''}", contratos_path %>
+<a href="#">⚙️ Configurações</a>
+<%= button_to destroy_user_session_path,
+    method: :delete,
+    class: "logout-link",
+    form: { class: "logout-form" } do %>
+    🚪 Sair
+<% end %>
+</div>
+
+<div class="content">
+<h1>Conteúdo Principal</h1>
+<p>Aqui fica o conteúdo da página.</p>
+</div>
+
+<script>
+    const toggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
+
+    toggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+        content.classList.toggle('shift');
+    });
+</script>
