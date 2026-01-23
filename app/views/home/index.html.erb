@@ -1,83 +1,28 @@
-<h1>Seja bem-vindo <%= current_user.userconf.nome %>!</h1>
+<span class="menu-toggle">☰</span>
 
-<nav>
-  <%= link_to "Contratos", contratos_path %>
-  <% if @contratos.present? %>
-    <%= link_to "| Débitos", debitos_path %>
-  <% end %>
-</nav>
+<div class="sidebar">
+  <h4 class="text-center text-white mb-4">Menu</h4>
+  <a href="#">🏠 Home</a>
+  <a href="#">👤 Usuários</a>
+  <a href="#">📊 Relatórios</a>
+  <a href="#">⚙️ Configurações</a>
+  <a href="#">🚪 Sair</a>
+</div>
 
-<br><br>
+<div class="content">
+  <h1>Conteúdo Principal</h1>
+  <p>Aqui fica o conteúdo da página.</p>
+</div>
 
-<h3>Débitos relativos a competência <%= formata_datas(Date.today) if !params[:search].present? %> - (<%= params[:search].present? ? "#{params[:search]}" : CalculosSistema.gera_cmpt(Date.today)%>)</h3>
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const content = document.querySelector('.content');
 
-<%= form_with url: root_path, method: :get, local: true do |form| %>
-  <%= form.text_field :search,
-        value: params[:search],
-        placeholder: "Pesquisar competência" %>
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    content.classList.toggle('shift');
+  });
+</script>
 
-  <%= form.submit "Pesquisar" %>
-<% end %>
 
-<hr>
-
-<% if @debitos.present? && @contrato_salario.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Nome do Débito</th>
-        <th>Valor (R$)</th>
-        <th>Descrição</th>
-        <!--<th>Data de vencimento</th>-->
-        <th>Competência</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <% @debitos.each do |d| %>
-        <tr>
-          <td><%= d.nome_debito %></td>
-          <td><%= formata_moedas(d.valor_debito) %></td>
-          <td><%= d.descricao %></td>
-          <!--<td><%= d.cmpt %></td>-->
-          <td><%= link_to "Editar", edit_debito_path(d.id) %></td>
-          <td><%= button_to "Excluir", d, method: :delete %></td>
-        </tr>
-        <% @total_dividas %>
-      <% end %>
-
-      <tr>
-          <td></td>
-          <td><hr>Valor Total : <%= formata_moedas(@total_dividas) %><hr></td>
-      </tr>
-      <tr>
-        <td><hr><%#= paginate @debitos, params: { search: params[:search] } %><hr></td>
-      </tr>
-    </tbody>
-
-    <tfoot>
-      <tr>
-        <td colspan="3">
-          <hr>
-          <strong>Salário bruto:</strong>
-          <%= formata_moedas(@contrato_salario.salario_bruto) %>
-          <br>
-          <strong>Salário líquido:</strong>
-          <%= formata_moedas(@contrato_salario.salario_liquido) %>
-          <br>
-          <strong>Sobra de salário:</strong>
-          <%= formata_moedas(@sobra_salario) %>
-          <hr>
-        </td>
-      </tr>
-    </tfoot>
-    
-  </table>
-  
-  <hr>
-
-  <br>
-<% end %>
-
-<%= button_to "Sair", destroy_user_session_path, method: :delete %>

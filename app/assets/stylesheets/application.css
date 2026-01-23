@@ -1,10 +1,63 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+.menu-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    display: none; /* escondido no desktop */
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #0d6efd;
+    position: fixed;
+    top: 0;
+    left: 0; /* aberto por padrão */
+    padding-top: 60px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.content {
+    margin-left: 250px; /* conteúdo já deslocado */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* mostra botão */
+    }
+
+    .sidebar {
+        left: -250px; /* fechado */
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .content.shift {
+        margin-left: 250px;
+    }
+}
