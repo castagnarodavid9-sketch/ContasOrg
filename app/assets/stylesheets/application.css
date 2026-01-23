@@ -1,3 +1,4 @@
+/* MENU LATERAL ---------------------------------------------------------------------------------------------*/
 .menu-toggle {
     font-size: 30px;
     cursor: pointer;
@@ -81,4 +82,72 @@
   
   .logout-link:hover {
     background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* TELA DE DÉBITOS ---------------------------------------------------------------------------------------------*/
+   .page-wrapper {
+    padding: 40px 30px;
+    display: flex;
+  }
+  
+  .card { /* Responsável pelo card */
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 20px auto 0;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  
+  .card-header {
+    padding-bottom: 10px;
+  }
+
+  .card-header h2 {
+    margin: 0;
+    background-color: none;
+  }
+  
+  .card-body {
+    overflow-x: auto;
+  }
+  
+  /* TABELA */
+  .debito-table { /*Tabela de dentro do card*/
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .debito-table th,
+  .debito-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+  
+  .debito-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+  }
+  
+  /* 📱 RESPONSIVO */
+  @media (max-width: 768px) {
+    .page-wrapper {
+      padding: 15px;
+    }
+  
+    .card {
+      padding: 15px;
+    }
+  
+    .debito-table th,
+    .debito-table td {
+      padding: 8px;
+      font-size: 14px;
+    }
   }
