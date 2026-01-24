@@ -4,62 +4,104 @@
   }
 </style>
 
-<%= form_with(model: debito) do |form| %>
-  <% if debito.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(debito.errors.count, "error") %> prohibited this debito from being saved:</h2>
-      <ul>
-        <% debito.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="page-wrapper">
+  <div class="card shadow-sm rounded-3">
+    <div class="card-header bg-white border-0">
+      <h2 class="text-center mb-0">💲 Editando Débito (<%= @debito.nome_debito%>)</h2>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label :nome_debito, style: "display: block" %>
-    <%= form.text_field :nome_debito, placeholder: "Digite um nome", required: true, title: "Informe um nome para esse débito" %>
+    <div class="card-body">
+      <%= form_with(model: debito, class: "row g-3") do |form| %>
+
+        <% if debito.errors.any? %>
+          <div class="col-12">
+            <div class="alert alert-danger">
+              <h5 class="mb-2">
+                <%= pluralize(debito.errors.count, "error") %> impedem o salvamento:
+              </h5>
+              <ul class="mb-0">
+                <% debito.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- Nome -->
+        <div class="col-md-6">
+          <%= form.label :nome_debito, class: "form-label" %>
+          <%= form.text_field :nome_debito,
+                class: "form-control",
+                placeholder: "Digite um nome",
+                required: true %>
+        </div>
+
+        <!-- Valor -->
+        <div class="col-md-6">
+          <%= form.label :valor_debito, class: "form-label" %>
+          <%= form.text_field :valor_debito,
+                class: "form-control",
+                placeholder: "Digite um valor",
+                required: true %>
+        </div>
+
+        <!-- Descrição -->
+        <div class="col-12">
+          <%= form.label :descricao, class: "form-label" %>
+          <%= form.text_area :descricao,
+                class: "form-control",
+                rows: 3,
+                placeholder: "Informe uma descrição" %>
+        </div>
+
+        <!-- Data -->
+        <div class="col-md-6">
+          <%= form.label :data_vencimento, class: "form-label" %>
+          <%= form.date_field :data_vencimento,
+                class: "form-control",
+                required: true %>
+        </div>
+
+        <!-- Parcelado -->
+        <div class="col-md-6 d-flex align-items-end">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="toggleDiv">
+            <label class="form-check-label" for="toggleDiv">
+              Parcelado
+            </label>
+          </div>
+        </div>
+
+        <!-- Parcelas -->
+        <div class="col-md-6 d-none" id="parcela">
+          <%= label_tag :nro_vezes, "N° de parcelas", class: "form-label" %>
+          <%= number_field_tag :nro_vezes, nil,
+                class: "form-control",
+                placeholder: "Quantidade de parcelas" %>
+        </div>
+
+        <!-- Contrato -->
+        <div class="col-12">
+          <%= form.label "Contrato", class: "form-label" %>
+          <%= form.collection_select :contrato_id,
+                Contrato.all,
+                :id,
+                :nome_empresa,
+                { prompt: "Selecione um contrato..." },
+                class: "form-select" %>
+        </div>
+
+        <!-- Botão -->
+        <div class="col-12 text-center">
+          <%= form.submit "Criar débito", class: "btn btn-primary px-4" %> |
+          <%= link_to "Voltar", debitos_path, class: "btn btn-danger px-4" %>
+        </div>
+
+      <% end %>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :valor_debito, style: "display: block" %>
-    <%= form.text_field :valor_debito, placeholder: "Digite um valor", required: true, title: "Informe um valor para esse débito" %>
-  </div>
-
-  <div>
-    <%= form.label :descricao, style: "display: block" %>
-    <%= form.text_area :descricao, placeholder: "Informe uma descrição para esse débito", required: true, title: "Informe uma descrição para esse débito (opcional)" %>
-  </div>
-
-  <div>
-    <%= form.label :data_vencimento, style: "display: block" %>
-    <%= form.date_field :data_vencimento, required: true, title: "Informe uma data de vencimento para esse débito" %>
-  </div>
-
-  <br>
-
-  <div>
-    <label for="toggleDiv">Parcelado</label>
-    <input type="checkbox" id="toggleDiv" value="1">
-  </div>
-
-  <div id="parcela">
-    <%= number_field_tag :nro_vezes, placeholder: "N° de parcelas", title: "Informe a quantidade de vezes que o débito foi parcelado" %>
-  </div>
-
-  <br>
-  
-  <div>
-    <%= form.label "Contrato", style: "display: block" %>
-    <%= form.collection_select :contrato_id, Contrato.all, :id, :nome_empresa, prompt: "Selecione um contrato..." %>
-  </div>
-
-  <br>
-
-  <div>
-    <%= form.submit "Criar débito" %>
-  </div>
-<% end %>
+</div>
 
 <script>
 $(document).ready(function () {

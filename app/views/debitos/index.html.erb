@@ -5,32 +5,38 @@
     </div>
 
     <div class="card-body">
-      <table class="debito-table">
+      <table class="debito-table table-sm">
         <thead>
           <tr>
             <th>Descrição</th>
             <th>Valor</th>
             <th>Observação</th>
             <th>Competência</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th class="text-center">Funções</th>
           </tr>
         </thead>
         <tbody>
-          <% @debitos.each do |d|%>
+          <% @debitos.each do |d| %>
             <tr>
-              <td><%= d.nome_debito%></td>
-              <td><%= formata_moedas(d.valor_debito) %></td>
-              <td><%= d.descricao %></td>
-              <td><%= d.cmpt %></td>
-              <td title= "Visualizar"><%= link_to "👁️", debito_path(d), class: "logout-link" %></td>
-              <td title= "Editar"><%= link_to "✏️", edit_debito_path(d), class: "logout-link" %></td>
-              <td title= "Remover"><%= button_to "🗑️", "#", class: "logout-link" %></td>
+              <td data-label="Descrição"><%= d.nome_debito %></td>
+              <td data-label="Valor"><%= formata_moedas(d.valor_debito) %></td>
+              <td data-label="Observação"><%= d.descricao %></td>
+              <td data-label="Competência"><%= d.cmpt %></td>
+              <td data-label="Visualizar" title="Visualizar">
+                <div class="d-flex align-items-center gap-2">
+                  <%= link_to "👁️", debito_path(d), class: "logout-link" %>
+                  <%= link_to "✏️", edit_debito_path(d), class: "logout-link" %>
+                  <%= button_to "🗑️", "#", class: "logout-link" %>
+                </div>  
+              </td>           
             </tr>
           <% end %>
         </tbody>
       </table>
+      <div class="col-12 text-center mt-3">
+        <%= link_to "Criar", new_debito_path, class: "btn btn-success px-4" %> |
+        <%= link_to "Voltar", root_path, class: "btn btn-danger px-4" %>
+      </div>
     </div>
   </div>
 </div>
