@@ -61,19 +61,3 @@
   </div>
 <% end %>
 
-<script>
-$(document).ready(function () {
-    console.log("Página carregada!");
-    
-    $("#toggleDiv").change(function () {
-        if ($(this).is(":checked")) {
-            $("#parcela").css("display", "block");
-            $("#nro_vezes").prop("required", true);
-        } else {
-            $("#parcela").css("display", "none");
-            $("#nro_vezes").prop("required", false);
-        }
-    });
-});
-</script>
-

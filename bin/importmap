@@ -1,4 +1,8 @@
-#!/usr/bin/env ruby
+pin "jquery", to: "vendor/jquery.min.js"
+pin "sb-admin-2", to: "sb_admin/sb-admin-2.js"
+pin "chartjs", to: "vendor/chart.min.js"
+pin "datatables", to: "vendor/jquery.dataTables.min.js"
+pin "datatables-bs4", to: "vendor/dataTables.bootstrap4.min.js"
 
-require_relative "../config/application"
-require "importmap/commands"
+
+
